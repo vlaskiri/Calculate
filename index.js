@@ -3,7 +3,7 @@ let b = '' // second number
 let sign = '' // operation
 let result = false;
 
-const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ','];
+const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', '*', '/']
 
 // результат на экране
@@ -31,7 +31,7 @@ document.querySelector('.parent-buttons').onclick = (event) => {
     // получаю нажатую кнопку
     const key = event.target.textContent;
 
-    // если нажата клавиша 0-9 или ,
+    // если нажата клавиша 0-9 или .
     if (digit.includes(key)) {
         if (b === '' && sign === '') {
             a += key;
