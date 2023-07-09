@@ -1,99 +1,99 @@
-let a = '' // first number
-let b = '' // second number
+let firstN = '' // first number
+let secondN = '' // second number
 let sign = '' // operation
 let result = false;
 
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', '*', '/']
 
-// результат на экране
+// result on screen
 const out = document.querySelector('.result p');
 
 function clearAll() {
-    a = '' // first number
-    b = '' // second number
+    firstN = '' // first number
+    secondN = '' // second number
     sign = '' // operation
     result = false;
     out.textContent = '0';
 }
 
-document.querySelector('.ac').onclick = clearAll;
+document.getElementById('allClear').addEventListener('click', clearAll);
 
 document.querySelector('.parent-buttons').onclick = (event) => {
-    // нажата не кнопка
+    // no button pressed
     if(!event.target.classList.contains('btn')) return;
 
-    // нажата кнопка clearAll ac
+    // button pressed 'AC'
     if(event.target.classList.contains('ac')) return;
 
     out.textContent = '';
 
-    // получаю нажатую кнопку
+    // get pressed button
     const key = event.target.textContent;
 
-    const maxDigits = 9; // максимальное кол-во вводимых символов
-    let resultValue = ''; // переменная для хранения полного значения результата
+    const maxDigits = 9; // maximum number of input characters
+    let resultValue = ''; // a variable to store the full value of the result
 
-    // если нажата клавиша 0-9 или .
+    // if the '0-9' key or period is pressed
     if (digit.includes(key)) {
-        if (b === '' && sign === '') {
-            if(a.length < maxDigits) {
-                a += key;
-                out.textContent = a.length < maxDigits ? a : a.substring(0, maxDigits);
+        if (!secondN && !sign) {
+            if(firstN.length < maxDigits) {
+                firstN += key;
+                out.textContent = firstN.length < maxDigits ? firstN : firstN.substring(0, maxDigits);
             }
-        } else if (a !== '' && b !== '' && result) {
-            if (b.length < maxDigits) {
-                b = key;
+        } else if (firstN !== '' && secondN !== '' && result) {
+            if (secondN.length < maxDigits) {
+                secondN = key;
                 result = false;
-                out.textContent = b.length < maxDigits ? b : b.substring(0, maxDigits);
+                out.textContent = secondN.length < maxDigits ? secondN : secondN.substring(0, maxDigits);
             }
         } else {
-            if (b.length < maxDigits) {
-                b += key;
-                out.textContent = b.length < maxDigits ? b : b.substring(0, maxDigits);
+            if (secondN.length < maxDigits) {
+                secondN += key;
+                out.textContent = secondN.length < maxDigits ? secondN : secondN.substring(0, maxDigits);
             }
         }
-        console.table(a, b, sign);
+        console.table(firstN, secondN, sign);
         return;
     }
 
-    // если нажата клавиша +, -, /, *
+    // if the '+, -, /, *' key is pressed
     if (action.includes(key)) {
         sign = key;
-        console.table(a, b, sign);
+        console.table(firstN, secondN, sign);
         out.textContent = sign;
         return;
     }
 
-    // нажата кнопка =
+    // button pressed '='
     if (key === '=') {
-        if (b === '')
-            b = a
+        if (secondN === '')
+            secondN = firstN
         switch (sign) {
             case '+':
-                a = (+a) + (+b);
+                firstN = (+firstN) + (+secondN);
                 break;
             case '-':
-                a = a - b;
+                firstN = firstN - secondN;
                 break;
             case '*':
-                a = a * b;
+                firstN = firstN * secondN;
                 break;
             case '/':
-                if (b === '0') {
+                if (secondN === '0') {
                     out.textContent = 'Error';
-                    a = '';
-                    b = '';
+                    firstN = '';
+                    secondN = '';
                     sign = '';
                     return;
                 }
-                a = a / b;
+                firstN = firstN / secondN;
                 break;
         }
         result = true;
-        resultValue = a.toString(); // сохранение полного значения результата
-        out.textContent = resultValue.substring(0, maxDigits); // Отображение ограниченного количества символов в result p
-        console.table(a, b, sign, resultValue);
+        resultValue = firstN.toString(); // saving the full value of the result
+        out.textContent = resultValue.substring(0, maxDigits); // Display limited number of characters in '.result p'
+        console.table(firstN, secondN, sign, resultValue);
     }
 
 }
