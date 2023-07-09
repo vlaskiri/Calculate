@@ -31,18 +31,27 @@ document.querySelector('.parent-buttons').onclick = (event) => {
     // получаю нажатую кнопку
     const key = event.target.textContent;
 
+    const maxDigits = 9; // максимальное кол-во вводимых символов
+    let resultValue = ''; // переменная для хранения полного значения результата
+
     // если нажата клавиша 0-9 или .
     if (digit.includes(key)) {
         if (b === '' && sign === '') {
-            a += key;
-            out.textContent = a;
+            if(a.length < maxDigits) {
+                a += key;
+                out.textContent = a.length < maxDigits ? a : a.substring(0, maxDigits);
+            }
         } else if (a !== '' && b !== '' && result) {
-            b = key;
-            result = false;
-            out.textContent = b;
+            if (b.length < maxDigits) {
+                b = key;
+                result = false;
+                out.textContent = b.length < maxDigits ? b : b.substring(0, maxDigits);
+            }
         } else {
-            b += key;
-            out.textContent = b;
+            if (b.length < maxDigits) {
+                b += key;
+                out.textContent = b.length < maxDigits ? b : b.substring(0, maxDigits);
+            }
         }
         console.table(a, b, sign);
         return;
@@ -82,9 +91,9 @@ document.querySelector('.parent-buttons').onclick = (event) => {
                 break;
         }
         result = true;
-        out.textContent = a;
-        console.table(a, b, sign);
-
+        resultValue = a.toString(); // сохранение полного значения результата
+        out.textContent = resultValue.substring(0, maxDigits); // Отображение ограниченного количества символов в result p
+        console.table(a, b, sign, resultValue);
     }
 
 }

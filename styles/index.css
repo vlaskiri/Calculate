@@ -4,19 +4,16 @@ body {
 
 main {
     margin: auto;
-    width: 100vh;
-    height: 100vh;
 }
 
 .calculate-front {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     background: #625F5F;
     width: 450px;
-    height: 930px;
-    margin: 0 auto;
-    gap: 5px;
+    height: 860px;
+    margin: 30px auto;
+    border-radius: 16px;
 }
 
 .result {
@@ -30,7 +27,7 @@ main {
 }
 
 .result p {
-    font-size: 100px;
+    font-size: 90px;
 }
 
 .parent-buttons {
