@@ -31,7 +31,7 @@ document.getElementById('parent-buttons').onclick = (event) => {
     // get pressed button
     const key = event.target.textContent;
 
-    const maxDigits = 9; // maximum number of input characters
+    const maxDigits = 10; // maximum number of input characters
     let resultValue = ''; // a variable to store the full value of the result
 
     // if the '0-9' key or period is pressed
@@ -91,7 +91,3 @@ document.getElementById('parent-buttons').onclick = (event) => {
     }
 
 }
-
-// const textElement = document.getElementById('textResult');
-// const maxCharacterCount = 50;
-// const initialFontSize = 100;

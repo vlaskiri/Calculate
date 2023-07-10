@@ -8,8 +8,8 @@ main {
 
 .calculate-front {
     background: #625F5F;
-    width: 450px;
-    height: 100%;
+    max-width: 450px;
+    max-height: 100%;
     margin: 30px auto;
     padding: 0 0 15px;
     border-radius: 16px;
@@ -24,13 +24,23 @@ main {
     color: white;
     padding: 20px 15px;
     height: 50%;
-    width: 450px;
-    font-size: 70px;
-    overflow: hidden;
+    max-width: 450px;
+    /*overflow: hidden;*/
+    container-type: inline-size;
+    container-name: resultText;
+
 }
 
 .result span {
+    display: block;
+    max-width: 100%;
+    font-size: calc(54px + 16 * (100vw / 2560));
+}
 
+@container resultText (max-width: 450px) {
+    .result span {
+        font-size: 54px;
+    }
 }
 
 #parent-buttons {
