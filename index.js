@@ -7,7 +7,7 @@ const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', '*', '/']
 
 // result on screen
-const out = document.querySelector('.result p');
+const out = document.getElementById('textResult');
 
 function clearAll() {
     firstN = '' // first number
@@ -19,7 +19,7 @@ function clearAll() {
 
 document.getElementById('allClear').addEventListener('click', clearAll);
 
-document.querySelector('.parent-buttons').onclick = (event) => {
+document.getElementById('parent-buttons').onclick = (event) => {
     // no button pressed
     if(!event.target.classList.contains('btn')) return;
 
@@ -37,21 +37,15 @@ document.querySelector('.parent-buttons').onclick = (event) => {
     // if the '0-9' key or period is pressed
     if (digit.includes(key)) {
         if (!secondN && !sign) {
-            if(firstN.length < maxDigits) {
-                firstN += key;
-                out.textContent = firstN.length < maxDigits ? firstN : firstN.substring(0, maxDigits);
-            }
+            firstN += key;
+            out.textContent = firstN;
         } else if (firstN !== '' && secondN !== '' && result) {
-            if (secondN.length < maxDigits) {
-                secondN = key;
-                result = false;
-                out.textContent = secondN.length < maxDigits ? secondN : secondN.substring(0, maxDigits);
-            }
+            secondN = key;
+            result = false;
+            out.textContent = secondN;
         } else {
-            if (secondN.length < maxDigits) {
-                secondN += key;
-                out.textContent = secondN.length < maxDigits ? secondN : secondN.substring(0, maxDigits);
-            }
+            secondN += key;
+            out.textContent = secondN;
         }
         console.table(firstN, secondN, sign);
         return;
@@ -97,3 +91,7 @@ document.querySelector('.parent-buttons').onclick = (event) => {
     }
 
 }
+
+// const textElement = document.getElementById('textResult');
+// const maxCharacterCount = 50;
+// const initialFontSize = 100;

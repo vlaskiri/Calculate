@@ -7,30 +7,33 @@ main {
 }
 
 .calculate-front {
-    display: flex;
-    flex-direction: column;
     background: #625F5F;
     width: 450px;
-    height: 860px;
+    height: 100%;
     margin: 30px auto;
+    padding: 0 0 15px;
     border-radius: 16px;
+    display: flex;
+    flex-direction: column;
 }
 
 .result {
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: flex-end;
     color: white;
     padding: 20px 15px;
-    height: 140px;
-    justify-content: flex-start;
-    align-items: flex-end;
+    height: 50%;
+    width: 450px;
+    font-size: 70px;
+    overflow: hidden;
 }
 
-.result p {
-    font-size: 90px;
+.result span {
+
 }
 
-.parent-buttons {
+#parent-buttons {
     display: grid;
     grid-template-areas:
             'ac plus-minus percent division'
